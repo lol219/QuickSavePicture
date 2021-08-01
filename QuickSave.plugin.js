@@ -2,7 +2,7 @@
  * @name QuickSave
  * @invite 
  * @authorId 
- * @website 
+ * @website https://github.com/lol219/QuickSavePicture/tree/main
  * @source 
  */
 class Quicksave {
