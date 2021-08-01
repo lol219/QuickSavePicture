@@ -21,6 +21,14 @@ module.exports = (Plugin, Library) => {
         }
     };
 };
+"changelog": [
+            {
+                title: "Changelog",
+                type: "fixed",
+                items: ["The Plugin Will work on Mac Now And Fixed some minor bugs"],
+		},   
+          
+         ],
 
 class Quicksave {
 	getAuthor()		{ return "kosshi";} // real author is kosshi
