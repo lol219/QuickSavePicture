@@ -3,8 +3,25 @@
  * @invite 
  * @authorId 
  * @website https://github.com/lol219/QuickSavePicture/tree/main
- * @source 
+ * @source https://raw.githubusercontent.com/lol219/QuickSavePicture/main/QuickSave.plugin.js
  */
+const Bapi = BdApi;
+module.exports = (Plugin, Library) => {
+    const {Patcher} = Library;
+    return class  extends Plugin {
+
+        onStart() {
+            Patcher.before(Logger, "log", (t, a) => {
+                a[0] = "Patched Message: " + a[0];
+            });
+        }
+
+        onStop() {
+            Patcher.unpatchAll();
+        }
+    };
+};
+
 class Quicksave {
 	getAuthor()		{ return "kosshi";} // real author is kosshi
 	getName()		{ return "Quicksave";}
@@ -12,6 +29,14 @@ class Quicksave {
 	getDescription(){ return "Lets you save images fast. It can reveal your ip adress if you tried to link it with a malicious script so i'm not responsible about that";}
 	load() {} // Called when the plugin is loaded in to memory
 	start() {
+		if (!global.ZeresPluginLibrary) return window.BdApi.alert("Library Missing",`The library plugin needed for ${this.getName()} is missing.<br /><br /> <a href="https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js" target="_blank">Click here to download the library!</a>`);
+        ZLibrary.PluginUpdater.checkForUpdate(this.getName(), this.getVersion(), "https://raw.githubusercontent.com/lol219/QuickSavePicture/main/QuickSave.plugin.js");
+		}
+
+    stop() {
+
+	}
+}
 		this.settingsVersion = 6; 
 
 		this.extensionWhitelist = 
@@ -585,3 +610,5 @@ class Quicksave {
 		return fullname;
 	}
 }
+})(global.ZeresPluginLibrary.buildPlugin(config));
+})();
